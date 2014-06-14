@@ -6,31 +6,97 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_gravity="center"
     tools:context="com.dmcalc.dmcalc.MainActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
+    <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:inputType="number|numberSigned"
+        android:ems="8"
+        android:id="@+id/dividend"
+        android:hint="Dividend"
+        android:maxLines="1"
+        android:enabled="true"
+        android:textSize="18dp"
+        android:fontFamily="sans-serif-light"
+        android:focusable="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/dmTitle"
+        android:layout_alignLeft="@+id/dmTitle"
+        android:layout_alignStart="@+id/dmTitle"
+        android:gravity="center_horizontal"
+        android:clickable="true"
+        android:editable="true"
+        android:digits="0123456789" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberSigned"
-        android:ems="4"
-        android:id="@+id/dividend"
-        android:layout_marginTop="94dp"
-        android:layout_below="@+id/section_label"
+        android:ems="8"
+        android:id="@+id/divisor"
+        android:hint="Divisor"
+        android:maxLines="1"
+        android:enabled="true"
+        android:textSize="18dp"
+        android:fontFamily="sans-serif-light"
+        android:focusable="true"
+        android:layout_alignStart="@+id/dmTitle"
+        android:layout_below="@+id/dividend"
+        android:layout_alignLeft="@+id/dmTitle"
+        android:layout_marginLeft="23dp"
+        android:gravity="center_horizontal"
+        android:clickable="true"
+        android:editable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter numbers."
+        android:id="@+id/dmTitle"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="19dp"
+        android:textSize="34dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <EditText
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:ems="4"
-        android:id="@+id/divisor"
-        android:layout_below="@+id/dividend"
-        android:layout_alignLeft="@+id/dividend"
-        android:layout_alignStart="@+id/dividend" />
+        android:text="Compute"
+        android:id="@+id/button"
+        android:layout_below="@+id/divisor"
+        android:layout_toRightOf="@+id/divisor"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif-light" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Quotient"
+        android:id="@+id/quotLabel"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/dmTitle"
+        android:layout_alignStart="@+id/dmTitle"
+        android:layout_marginTop="51dp"
+        android:fontFamily="sans-serif-light"
+        android:textSize="40dp"
+        android:textIsSelectable="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Remainder"
+        android:id="@+id/remLabel"
+        android:textSize="40dp"
+        android:fontFamily="sans-serif-light"
+        android:textIsSelectable="true"
+        android:layout_below="@+id/quotLabel"
+        android:layout_alignLeft="@+id/quotLabel"
+        android:layout_alignStart="@+id/quotLabel" />
 </RelativeLayout>

@@ -128,12 +128,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             // Return a PlaceholderFragment (defined as a static inner class below).
 //            return PlaceholderFragment.newInstance(position + 1);
             switch(position) {
-                case 1:
+                case 0:
                     return DivModFragment.newInstance();
-                case 2:
+                case 1:
 //                    return LinCongFragment.newInstance();
                 break;
-                case 3:
+                case 2:
 //                    return RepeatedSqFragment.newInstance();
                 break;
             }
@@ -213,8 +213,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Dis be divMod");
             return rootView;
         }
     }
