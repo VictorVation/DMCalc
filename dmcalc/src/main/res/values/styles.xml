@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- NOTE: Generated files have been modified:
+    - Changed the base style's parent to Theme.AppCompat.Light
+    - Modified ActionBar tab styles
+-->
 <!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
@@ -16,7 +20,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
 
     <style name="Theme.Dmcalc" parent="Theme.AppCompat.Light">
