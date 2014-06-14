@@ -1,7 +1,10 @@
 package com.dmcalc.dmcalc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -16,7 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -79,7 +88,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -129,7 +138,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 //            return PlaceholderFragment.newInstance(position + 1);
             switch(position) {
                 case 0:
-                    return DivModFragment.newInstance();
+                    return new DivModFragment();
                 case 1:
 //                    return LinCongFragment.newInstance();
                 break;
@@ -195,17 +204,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
-    public static class DivModFragment extends Fragment {
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static DivModFragment newInstance() {
-            DivModFragment fragment = new DivModFragment();
-            Bundle args = new Bundle();
-            return fragment;
-        }
-
+    public class DivModFragment extends Fragment implements View.OnClickListener {
         public DivModFragment() {
         }
 
@@ -213,8 +212,79 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
+            Button calculate = (Button) rootView.findViewById(R.id.calculateDivMod);
+            calculate.setOnClickListener(this);
+
             return rootView;
         }
+
+        @Override
+        public void onClick(View v) {
+            hideKeyboard();
+            EditText dividText = (EditText) findViewById(R.id.dividend);
+            EditText divisText = (EditText) findViewById(R.id.divisor);
+
+            String dividStr = dividText.getText().toString();
+            String divisStr = divisText.getText().toString();
+
+            if (dividStr.length() == 0 || divisStr.length() == 0) {
+                sendToast("You forgot a number!");
+                return;
+            }
+
+            if (divisStr.equals("0")) {
+                sendToast("Can't divide by zero!");
+                return;
+            }
+
+            long dividend = Long.valueOf(dividStr);
+            long divisor = Long.valueOf(divisStr);
+
+            long quotient = dividend / divisor;
+            long remainder = dividend % divisor;
+
+            TextView quotView = (TextView) findViewById(R.id.quotient);
+            TextView remView = (TextView) findViewById(R.id.remainder);
+
+            quotView.setText(String.valueOf(quotient));
+            remView.setText(String.valueOf(remainder));
+        }
+    }
+
+    public class LinCongFragement extends Fragment implements View.OnClickListener {
+        public LinCongFragement() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
+            Button calculate = (Button) rootView.findViewById(R.id.calculateDivMod);
+            calculate.setOnClickListener(this);
+
+            return rootView;
+        }
+
+        @Override
+        public void onClick(View v) {
+            hideKeyboard();
+            // LinCong calc method
+        }
+    }
+
+    // Helper methods used in all fragments
+    protected void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    protected void sendToast(String msg) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, msg, duration);
+        toast.show();
     }
 
 }
