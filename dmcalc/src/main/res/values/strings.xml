@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Discrete Math Calculator</string>
+    <string name="title_section1">DivMod</string>
+    <string name="title_section2">Linear\nCongruence</string>
+    <string name="title_section3">Repeated\nSquaring</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+
+</resources>
