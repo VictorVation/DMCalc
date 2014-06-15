@@ -269,8 +269,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         // Submit on enter
         @Override
-        public boolean onKey(View v, int keyCode, KeyEvent event)
-        {
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                     (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 this.onClick(v);
