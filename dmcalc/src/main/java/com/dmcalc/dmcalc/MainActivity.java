@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,8 +89,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -111,6 +110,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -136,17 +145,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 //            return PlaceholderFragment.newInstance(position + 1);
+            Fragment fragment = MenuFragment.newInstance(position);
             switch(position) {
                 case 0:
-                    return new DivModFragment();
+                    fragment = new DivModFragment();
+                    fragment.setRetainInstance(true);
+                    break;
                 case 1:
-//                    return LinCongFragment.newInstance();
+                    fragment = new DivModFragment();
+                    fragment.setRetainInstance(true);
                 break;
                 case 2:
 //                    return RepeatedSqFragment.newInstance();
                 break;
             }
-            return MenuFragment.newInstance(position);
+            return fragment;
         }
 
         @Override
@@ -204,7 +217,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
-    public class DivModFragment extends Fragment implements View.OnClickListener {
+    public class DivModFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
         public DivModFragment() {
         }
 
@@ -214,7 +227,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
             Button calculate = (Button) rootView.findViewById(R.id.calculateDivMod);
             calculate.setOnClickListener(this);
-
+            EditText divisText = (EditText) rootView.findViewById(R.id.divisor);
+            divisText.setOnKeyListener(this);
             return rootView;
         }
 
@@ -228,6 +242,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             String divisStr = divisText.getText().toString();
 
             if (dividStr.length() == 0 || divisStr.length() == 0) {
+                System.out.println(dividStr);
+                System.out.println(divisStr);
+
                 sendToast("You forgot a number!");
                 return;
             }
@@ -248,6 +265,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             quotView.setText(String.valueOf(quotient));
             remView.setText(String.valueOf(remainder));
+        }
+
+        // Submit on enter
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event)
+        {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                this.onClick(v);
+            }
+            return false;
         }
     }
 
@@ -276,7 +304,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+        inputManager.hideSoftInputFromWindow(new View(this).getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 

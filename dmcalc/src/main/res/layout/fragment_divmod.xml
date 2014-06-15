@@ -17,20 +17,21 @@
         android:id="@+id/dividend"
         android:hint="Dividend"
         android:enabled="true"
-        android:textSize="18dp"
+        android:textSize="24dp"
         android:fontFamily="sans-serif-light"
         android:focusable="true"
         android:gravity="center_horizontal"
         android:clickable="true"
         android:editable="true"
         android:digits="-0987654321"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="22dp"
+        android:imeOptions="actionNext"
+        android:linksClickable="false"
+        android:lines="1"
+        android:maxLength="14"
         android:layout_below="@+id/dmTitle"
         android:layout_alignRight="@+id/dmTitle"
-        android:layout_alignEnd="@+id/dmTitle"
-        android:layout_marginRight="20dp"
-        android:imeOptions="actionNext"
-        android:linksClickable="false" />
+        android:layout_alignEnd="@+id/dmTitle" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
         android:id="@+id/divisor"
         android:hint="Divisor"
         android:enabled="true"
-        android:textSize="18dp"
+        android:textSize="24dp"
         android:fontFamily="sans-serif-light"
         android:focusable="true"
         android:gravity="center_horizontal"
@@ -49,8 +50,8 @@
         android:layout_below="@+id/dividend"
         android:layout_alignLeft="@+id/dividend"
         android:layout_alignStart="@+id/dividend"
-        android:imeOptions="actionDone"
-        />
+        android:lines="1"
+        android:maxLength="14" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,9 +86,9 @@
         android:text="Quotient"
         android:id="@+id/quotLabel"
         android:fontFamily="sans-serif-light"
-        android:textSize="38dp"
+        android:textSize="22dp"
         android:textIsSelectable="true"
-        android:layout_above="@+id/remainder"
+        android:layout_below="@+id/calculateDivMod"
         android:layout_alignLeft="@+id/dmTitle"
         android:layout_alignStart="@+id/dmTitle" />
     <TextView
@@ -95,39 +96,38 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/quotient"
-
         android:fontFamily="sans-serif-light"
-        android:textSize="40dp"
+        android:textSize="38dp"
         android:textIsSelectable="true"
         android:gravity="right"
-        android:layout_alignTop="@+id/quotLabel"
-        android:layout_alignLeft="@+id/remainder"
-        android:layout_alignStart="@+id/remainder" />
+        android:layout_alignStart="@+id/remLabel"
+        android:layout_alignEnd="@+id/remainder"
+        android:layout_below="@+id/quotLabel"
+        android:layout_alignLeft="@+id/dmTitle" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Remainder"
         android:id="@+id/remLabel"
-        android:textSize="38dp"
+        android:textSize="22dp"
         android:fontFamily="sans-serif-light"
         android:textIsSelectable="true"
-        android:layout_marginBottom="83dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/quotLabel"
-        android:layout_alignStart="@+id/quotLabel" />
+        android:layout_alignStart="@+id/quotLabel"
+        android:layout_below="@+id/quotient"
+        android:layout_alignLeft="@+id/dmTitle" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/remainder"
         android:fontFamily="sans-serif-light"
-        android:textSize="40dp"
+        android:textSize="38dp"
         android:textIsSelectable="true"
         android:gravity="right"
-        android:layout_marginRight="30dp"
-        android:layout_alignBottom="@+id/remLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="false" />
+        android:linksClickable="false"
+        android:layout_alignEnd="@+id/calculateDivMod"
+        android:layout_alignStart="@+id/remLabel"
+        android:layout_below="@+id/remLabel"
+        android:layout_alignLeft="@+id/dmTitle" />
 </RelativeLayout>
