@@ -1,5 +1,6 @@
 package com.dmcalc.dmcalc;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -23,8 +24,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -156,7 +160,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     fragment.setRetainInstance(true);
                 break;
                 case 2:
-//                    return RepeatedSqFragment.newInstance();
+                    fragment = new RepeatSqFragment();
+                    fragment.setRetainInstance(true);
                 break;
             }
             return fragment;
@@ -235,6 +240,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public void onClick(View v) {
             hideKeyboard();
+
             EditText dividText = (EditText) findViewById(R.id.dividend);
             EditText divisText = (EditText) findViewById(R.id.divisor);
 
@@ -296,6 +302,73 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public void onClick(View v) {
             hideKeyboard();
             // LinCong calc method
+        }
+    }
+
+    public class RepeatSqFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
+        public RepeatSqFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_repeatsq, container, false);
+            Button calculate = (Button) rootView.findViewById(R.id.calculateRSq);
+            calculate.setOnClickListener(this);
+
+            return rootView;
+        }
+
+        @Override
+        public void onClick(View v) {
+            hideKeyboard();
+
+            EditText baseText = (EditText) findViewById(R.id.base);
+            EditText expText = (EditText) findViewById(R.id.exp);
+            EditText modText = (EditText) findViewById(R.id.mod);
+
+            if(modText.getText().toString().equals("0") || modText.getText().toString().equals("1")) {
+                sendToast("Invalid modulus.");
+                return;
+            }
+
+            System.out.println(baseText.getText());
+            if(baseText.getText().length() == 0 ||
+               expText.getText().length() == 0 ||
+               modText.getText().length() == 0 ) {
+                sendToast("You forgot a number!");
+                return;
+            }
+
+            BigInteger base = new BigInteger(baseText.getText().toString());
+            BigInteger exp = new BigInteger(expText.getText().toString());
+            BigInteger mod = new BigInteger(modText.getText().toString());
+
+            BigInteger rem = base.modPow(exp, mod);
+
+            TextView baseView = (TextView) findViewById(R.id.baseOut);
+            TextView expView = (TextView) findViewById(R.id.expOut);
+            TextView remView = (TextView) findViewById(R.id.remOut);
+            TextView modView = (TextView) findViewById(R.id.modOut);
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) remView.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_RIGHT, R.id.base);
+            remView.setLayoutParams(params);
+
+            baseView.setText(base.toString());
+            expView.setText(exp.toString());
+            remView.setText(rem.toString());
+            modView.setText('(' + mod.toString() + ')');
+        }
+
+        // Submit on enter
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                this.onClick(v);
+            }
+            return false;
         }
     }
 
