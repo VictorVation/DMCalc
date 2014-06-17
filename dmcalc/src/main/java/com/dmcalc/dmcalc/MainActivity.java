@@ -1,5 +1,7 @@
 package com.dmcalc.dmcalc;
 
+import com.dmcalc.dmcalc.LDESolver;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -338,11 +340,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 return;
             }
 
+            LDESolver ldeSolver = new LDESolver();
+
             BigInteger base = new BigInteger(baseText.getText().toString());
             BigInteger exp = new BigInteger(expText.getText().toString());
             BigInteger mod = new BigInteger(modText.getText().toString());
 
-            BigInteger rem = base.modPow(exp, mod);
+            //BigInteger rem = base.modPow(exp, mod);   BACKUP METHOD
+            BigInteger rem = new BigInteger("0");
 
             TextView baseView = (TextView) findViewById(R.id.baseOut);
             TextView expView = (TextView) findViewById(R.id.expOut);
