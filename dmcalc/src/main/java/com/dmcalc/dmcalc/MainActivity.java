@@ -153,7 +153,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             switch(position) {
                 case 0:
                     fragment = new DivModFragment();
-                    fragment.setRetainInstance(true);
                     break;
                 case 1:
                     fragment = new DivModFragment();
@@ -161,7 +160,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 break;
                 case 2:
                     fragment = new RepeatSqFragment();
-                    fragment.setRetainInstance(true);
                 break;
             }
             return fragment;
@@ -230,8 +228,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
-            Button calculate = (Button) rootView.findViewById(R.id.calculateDivMod);
-            calculate.setOnClickListener(this);
+            Button calculateDivMod = (Button) rootView.findViewById(R.id.calculateDivMod);
+            calculateDivMod.setOnClickListener(this);
             EditText divisText = (EditText) rootView.findViewById(R.id.divisor);
             divisText.setOnKeyListener(this);
             return rootView;
@@ -243,14 +241,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             EditText dividText = (EditText) findViewById(R.id.dividend);
             EditText divisText = (EditText) findViewById(R.id.divisor);
-
+            System.out.println(dividText.getText());
             String dividStr = dividText.getText().toString();
             String divisStr = divisText.getText().toString();
 
             if (dividStr.length() == 0 || divisStr.length() == 0) {
-                System.out.println(dividStr);
-                System.out.println(divisStr);
-
+                System.out.println("yoyo");
                 sendToast("You forgot a number!");
                 return;
             }
@@ -313,8 +309,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_repeatsq, container, false);
-            Button calculate = (Button) rootView.findViewById(R.id.calculateRSq);
-            calculate.setOnClickListener(this);
+            Button calculateRSq = (Button) rootView.findViewById(R.id.calculateRSq);
+            calculateRSq.setOnClickListener(this);
+
+            EditText modText = (EditText) rootView.findViewById(R.id.mod);
+            modText.setOnKeyListener(this);
 
             return rootView;
         }
@@ -332,7 +331,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 return;
             }
 
-            System.out.println(baseText.getText());
             if(baseText.getText().length() == 0 ||
                expText.getText().length() == 0 ||
                modText.getText().length() == 0 ) {
@@ -376,7 +374,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(new View(this).getWindowToken(),
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
