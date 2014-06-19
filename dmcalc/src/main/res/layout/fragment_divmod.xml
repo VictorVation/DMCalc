@@ -73,9 +73,10 @@
         android:fontFamily="sans-serif-light"
         android:onClick="calculateDivMod()"
         android:focusable="false"
+        android:clickable="true"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/dmTitle"
-        android:clickable="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:layout_width="wrap_content"

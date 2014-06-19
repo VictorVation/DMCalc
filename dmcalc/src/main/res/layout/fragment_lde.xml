@@ -28,7 +28,8 @@
         android:lines="1"
         android:maxLength="6"
         android:layout_alignTop="@+id/b"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:textColorHighlight="#ff8800"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +47,8 @@
         android:lines="1"
         android:maxLength="6"
         android:layout_alignTop="@+id/b"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:textColorHighlight="#ff8800"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +67,8 @@
         android:maxLength="6"
         android:layout_marginTop="53dp"
         android:layout_below="@+id/rsqTitle"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColorHighlight="#ff8800"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
