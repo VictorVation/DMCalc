@@ -158,14 +158,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             switch(position) {
                 case 0:
                     fragment = new DivModFragment();
+                    fragment.setRetainInstance(true);
                     break;
                 case 1:
                     fragment = new LDEFragment();
-//                    fragment.setRetainInstance(true);
+                    fragment.setRetainInstance(true);
                     break;
                 case 2:
                     fragment = new RepeatSqFragment();
+                    fragment.setRetainInstance(true);
                     break;
+                default: break;
             }
             return fragment;
         }
@@ -185,6 +188,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
+                default: break;
             }
             return null;
         }
