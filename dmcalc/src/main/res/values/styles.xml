@@ -21,6 +21,8 @@
      limitations under the License.
 -->
 <resources>
+    <color name="windowbg">#FFE4E4E4</color>
+    <color name="fragbg">#FFFFFFFF</color>
 
     <style name="Theme.Dmcalc" parent="Theme.AppCompat.Light">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_dmcalc</item>
@@ -32,8 +34,9 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_dmcalc</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_dmcalc</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Dmcalc</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/windowbg</item>
     </style>
 
     <style name="ActionBar.Solid.Dmcalc" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">

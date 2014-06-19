@@ -333,8 +333,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             int[] answer = LDESolver.solveLDE(aInt, bInt, cInt);
 
-            String xStr = String.valueOf(answer[0]) + "\u00B1" + String.valueOf(bInt);
-            String yStr = String.valueOf(answer[1]) + "\u00B1" + String.valueOf(aInt);
+            String xStr = String.valueOf(answer[0]) + " \u00B1 " + String.valueOf(bInt);
+            String yStr = String.valueOf(answer[1]) + " \u00B1 " + String.valueOf(aInt);
 
             TextView xOut = (TextView) findViewById(R.id.xOut);
             TextView yOut = (TextView) findViewById(R.id.yOut);

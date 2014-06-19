@@ -1,8 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dmcalc.dmcalc.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dmcalc.dmcalc.MainActivity">
+    android:background="@color/fragbg">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,8 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="10dp"
-        android:autoLink="email"
+        android:textSize="16dp"
         android:id="@+id/github"
         android:minLines="1"
         android:fontFamily="sans-serif-thin"
@@ -74,3 +78,4 @@
         android:textColorLink="#ff8800"
         android:layout_centerHorizontal="true"/>
     </RelativeLayout>
+    </FrameLayout>
