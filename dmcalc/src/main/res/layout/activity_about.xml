@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="If you have any questions, suggestions, comments, or problems, feel free to contact us:\nme@victorszeto.com\ntimothykytong@gmail.com"
+        android:text="If you have any questions, suggestions, comments, or concerns, feel free to contact us:\nme@victorszeto.com\nme@timothytong.com"
         android:textSize="20dp"
         android:autoLink="email"
         android:fontFamily="sans-serif-thin"
