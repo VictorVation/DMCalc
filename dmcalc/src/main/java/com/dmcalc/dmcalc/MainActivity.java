@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
             Intent aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
             MainActivity.this.startActivity(aboutIntent);
             return false;
@@ -394,7 +394,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             BigInteger mod = new BigInteger(modText.getText().toString());
 
             //BigInteger rem = base.modPow(exp, mod);   BACKUP METHOD
-            BigInteger rem = new BigInteger("0");
+            BigInteger rem = RSSolver.repeatedSquare(base, exp, mod);
 
             TextView baseView = (TextView) findViewById(R.id.baseOut);
             TextView expView = (TextView) findViewById(R.id.expOut);
