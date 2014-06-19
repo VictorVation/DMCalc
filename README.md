@@ -1,6 +1,6 @@
 # DMCalc
 
-A minimalistic discrete math calculator. Created by [Victor Szeto](http://victorszeto.com) and [Timothy Tong](http://timothytong.com). Available on the Google Play Store.
+A minimalist discrete math calculator. Available on the Google Play Store.
 
 ## Features
 ### DivMod
@@ -11,6 +11,6 @@ Given a Linear Diophantine Equation of the form ax + by = c, finds the lowest in
 Given three integers *b*, *e*, and *m*, calculates the remainder of a number *b* raised to the power *e* modulo *m*. Useful for doing cryptography exercises by hand. 
 
 ## About
-Based on the iOS app of the same name by [Timothy Tong](https://itunes.apple.com/us/app/discrete-math-calculator/id846170613). 
+Created by [Victor Szeto](http://victorszeto.com) and [Timothy Tong](http://timothytong.com). Based on the iOS app of the same name by [Timothy Tong](https://itunes.apple.com/us/app/discrete-math-calculator/id846170613). 
 
-Any questions? Contact Victor at dmcalc at myfullname.com, or Tim at timothykytong at gmail.
+Any questions, suggestions, comments, or concerns? You can reach us by email at: me at victorszeto.com, and me at timothytong.com.
