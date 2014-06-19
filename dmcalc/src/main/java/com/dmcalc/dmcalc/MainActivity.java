@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -106,7 +107,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+            Intent aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
+            MainActivity.this.startActivity(aboutIntent);
+            return false;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -151,18 +154,18 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 //            return PlaceholderFragment.newInstance(position + 1);
-            Fragment fragment = MenuFragment.newInstance(position);
+            Fragment fragment = AboutFragment.newInstance();
             switch(position) {
                 case 0:
                     fragment = new DivModFragment();
                     break;
                 case 1:
-                    fragment = new DivModFragment();
-                    fragment.setRetainInstance(true);
-                break;
+                    fragment = new LDEFragment();
+//                    fragment.setRetainInstance(true);
+                    break;
                 case 2:
                     fragment = new RepeatSqFragment();
-                break;
+                    break;
             }
             return fragment;
         }
@@ -190,7 +193,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class MenuFragment extends Fragment {
+    public static class AboutFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -201,15 +204,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static MenuFragment newInstance(int sectionNumber) {
-            MenuFragment fragment = new MenuFragment();
+        public static AboutFragment newInstance() {
+            AboutFragment fragment = new AboutFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
 
-        public MenuFragment() {
+        public AboutFragment() {
         }
 
         @Override
@@ -248,7 +251,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             String divisStr = divisText.getText().toString();
 
             if (dividStr.length() == 0 || divisStr.length() == 0) {
-                System.out.println("yoyo");
                 sendToast("You forgot a number!");
                 return;
             }
@@ -282,16 +284,19 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
-    public class LinCongFragement extends Fragment implements View.OnClickListener {
-        public LinCongFragement() {
+    public class LDEFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
+        public LDEFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_divmod, container, false);
-            Button calculate = (Button) rootView.findViewById(R.id.calculateDivMod);
+            View rootView = inflater.inflate(R.layout.fragment_lde, container, false);
+            Button calculate = (Button) rootView.findViewById(R.id.calculateLDE);
             calculate.setOnClickListener(this);
+
+            EditText modText = (EditText) rootView.findViewById(R.id.c);
+            modText.setOnKeyListener(this);
 
             return rootView;
         }
@@ -299,7 +304,49 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public void onClick(View v) {
             hideKeyboard();
-            // LinCong calc method
+
+            EditText a = (EditText) findViewById(R.id.a);
+            EditText b = (EditText) findViewById(R.id.b);
+            EditText c = (EditText) findViewById(R.id.c);
+
+            String aStr = a.getText().toString();
+            String bStr = b.getText().toString();
+            String cStr = c.getText().toString();
+
+            if (aStr.length() == 0 || bStr.length() == 0 || cStr.length() == 0) {
+                sendToast("You forgot a coefficient!");
+                return;
+            }
+
+            int aInt = Integer.valueOf(aStr);
+            int bInt = Integer.valueOf(bStr);
+            int cInt = Integer.valueOf(cStr);
+
+            if (aInt == 0 || bInt == 0 || cInt == 0) {
+                sendToast("One of your coefficients was invalid!");
+                return;
+            }
+
+            int[] answer = LDESolver.solveLDE(aInt, bInt, cInt);
+
+            String xStr = String.valueOf(answer[0]) + "\u00B1" + String.valueOf(bInt);
+            String yStr = String.valueOf(answer[1]) + "\u2213" + String.valueOf(aInt);
+
+            TextView xOut = (TextView) findViewById(R.id.xOut);
+            TextView yOut = (TextView) findViewById(R.id.yOut);
+
+            xOut.setText(xStr);
+            yOut.setText(yStr);
+        }
+
+        // Submit on enter
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                this.onClick(v);
+            }
+            return false;
         }
     }
 
