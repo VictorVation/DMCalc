@@ -1,4 +1,4 @@
-package com.dmcalc.dmcalc;
+package com.victorszeto.dmcalc;
 
 import java.util.ArrayList;
 

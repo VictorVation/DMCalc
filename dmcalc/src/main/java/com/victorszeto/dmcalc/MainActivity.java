@@ -1,10 +1,6 @@
-package com.dmcalc.dmcalc;
-
-import com.dmcalc.dmcalc.LDESolver;
+package com.victorszeto.dmcalc;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
@@ -17,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,10 +25,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {

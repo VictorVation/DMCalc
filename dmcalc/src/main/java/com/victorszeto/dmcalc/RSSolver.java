@@ -1,11 +1,10 @@
-package com.dmcalc.dmcalc;
+package com.victorszeto.dmcalc;
 
 import java.math.BigInteger;
 
 /**
  * Created by timothytong on 2014-06-18.
  */
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class RSSolver {
