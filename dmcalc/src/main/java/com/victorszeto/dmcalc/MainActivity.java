@@ -3,6 +3,7 @@ package com.victorszeto.dmcalc;
 import java.math.BigInteger;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -220,6 +221,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class DivModFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
         public DivModFragment() {
         }
@@ -279,6 +281,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class LDEFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
         public LDEFragment() {
         }
@@ -345,6 +348,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class RepeatSqFragment extends Fragment implements View.OnClickListener, View.OnKeyListener {
         public RepeatSqFragment() {
         }
