@@ -9,14 +9,16 @@
         android:theme="@style/Theme.Dmcalc" >
         <activity
             android:name="com.victorszeto.dmcalc.MainActivity"
-            android:label="DMCalc" >
+            android:label="DMCalc"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="About" android:name="AboutActivity"/>
+        <activity android:label="About" android:name="AboutActivity"
+            android:configChanges="orientation"/>
 
     </application>
 
