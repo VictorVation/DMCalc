@@ -16,10 +16,11 @@ public class RSSolver {
     private static BigInteger m;
     private static int counter = 1;
     private static HashMap<BigInteger,BigInteger> map;
-    private static ArrayList<String> remainderStrings = new ArrayList<String>();
+    private static ArrayList<String> remainderStrings;
     public static BigInteger repeatedSquare(BigInteger base, BigInteger exponent, BigInteger mod) {
+        remainderStrings = new ArrayList<String>();
         map = new HashMap<BigInteger, BigInteger>();
-        a= base;
+        a = base;
         b = exponent;
         m = mod;
         r = a.mod(m);
