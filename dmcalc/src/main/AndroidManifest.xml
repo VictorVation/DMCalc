@@ -22,7 +22,9 @@
         <activity android:label="About" android:name="AboutActivity"
             android:configChanges="orientation"
             android:screenOrientation="sensorPortrait" />
-
+        <activity android:label="Step by Step Solutions" android:name="DetailActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="sensorPortrait" />
     </application>
 
 </manifest>
