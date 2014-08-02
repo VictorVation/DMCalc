@@ -1,6 +1,7 @@
 package com.victorszeto.dmcalc;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -360,6 +362,42 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             Button calculateRSq = (Button) rootView.findViewById(R.id.calculateRSq);
             calculateRSq.setOnClickListener(this);
 
+            Button fullAns = (Button) rootView.findViewById(R.id.fullAns);
+            fullAns.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hideKeyboard();
+
+                    EditText baseText = (EditText) findViewById(R.id.base);
+                    EditText expText = (EditText) findViewById(R.id.exp);
+                    EditText modText = (EditText) findViewById(R.id.mod);
+
+                    if(modText.getText().toString().equals("0") || modText.getText().toString().equals("1")) {
+                        sendToast("Invalid modulus.");
+                        return;
+                    }
+
+                    if(baseText.getText().length() == 0 ||
+                            expText.getText().length() == 0 ||
+                            modText.getText().length() == 0 ) {
+                        sendToast("You forgot a number!");
+                        return;
+                    }
+
+                    BigInteger base = new BigInteger(baseText.getText().toString());
+                    BigInteger exp = new BigInteger(expText.getText().toString());
+                    BigInteger mod = new BigInteger(modText.getText().toString());
+
+                    Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
+
+                    RSSolver rSSolver = new RSSolver(base, exp, mod);
+                    ArrayList<String> remStrings = rSSolver.getRemainderStrings();
+                    String joined = TextUtils.join("\n", remStrings);
+                    detailIntent.putExtra("solution", joined);
+                    MainActivity.this.startActivity(detailIntent);
+                }
+            });
+
             EditText modText = (EditText) rootView.findViewById(R.id.mod);
             modText.setOnKeyListener(this);
 
@@ -386,14 +424,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 return;
             }
 
-            LDESolver ldeSolver = new LDESolver();
-
             BigInteger base = new BigInteger(baseText.getText().toString());
             BigInteger exp = new BigInteger(expText.getText().toString());
             BigInteger mod = new BigInteger(modText.getText().toString());
 
             //BigInteger rem = base.modPow(exp, mod);   BACKUP METHOD
-            BigInteger rem = RSSolver.repeatedSquare(base, exp, mod);
+            RSSolver rSSolver = new RSSolver(base, exp, mod);
+            BigInteger rem = rSSolver.getRemainder();
 
             TextView baseView = (TextView) findViewById(R.id.baseOut);
             TextView expView = (TextView) findViewById(R.id.expOut);

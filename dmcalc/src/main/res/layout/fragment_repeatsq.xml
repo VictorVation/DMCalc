@@ -97,8 +97,17 @@
         android:clickable="true"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
+        android:layout_alignParentEnd="true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Full Solution"
+        android:id="@+id/fullAns"
+        android:fontFamily="sans-serif-light"
+        android:focusable="false"
+        android:clickable="true"
+        android:layout_below="@+id/modOut"
+        android:layout_toRightOf="@+id/mod"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
