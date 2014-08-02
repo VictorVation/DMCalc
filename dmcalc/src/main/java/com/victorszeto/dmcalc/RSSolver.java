@@ -9,15 +9,18 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class RSSolver {
-    private static BigInteger expo = new BigInteger("1");
+    private static BigInteger expo;
     private static BigInteger a;
     private static BigInteger r;
     private static BigInteger b;
     private static BigInteger m;
-    private static int counter = 1;
+    private static int counter;
     private static HashMap<BigInteger,BigInteger> map;
     private static ArrayList<String> remainderStrings;
+
     public static BigInteger repeatedSquare(BigInteger base, BigInteger exponent, BigInteger mod) {
+        expo = new BigInteger("1");
+        counter=1;
         remainderStrings = new ArrayList<String>();
         map = new HashMap<BigInteger, BigInteger>();
         a = base;
